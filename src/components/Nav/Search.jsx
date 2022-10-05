@@ -14,13 +14,19 @@ const Search = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    navigate("/main", { state: searchValue });
+    navigate(`/main?search=${searchValue}`);
+  };
+
+  const resetSearchValue = e => {
+    e.preventDefault();
+    navigate(`/main`);
     setSearchValue("");
   };
 
   return (
     <SearchArea onSubmit={handleSubmit}>
       <SearchBox onChange={handleSearchValue} value={searchValue} />
+      <SearchResetButton onClick={resetSearchValue}>초기화</SearchResetButton>
     </SearchArea>
   );
 };
@@ -28,8 +34,9 @@ const Search = () => {
 export default Search;
 
 const SearchArea = styled.form`
-  width: 80%;
-  margin: 0 10px;
+  position: relative;
+  width: calc(100% - 269px);
+  margin: 0 0 0 10px;
 `;
 
 const SearchBox = styled.input.attrs({ placeholder: "검색" })`
@@ -52,4 +59,17 @@ const SearchBox = styled.input.attrs({ placeholder: "검색" })`
     padding-left: 20px;
     background-image: none;
   }
+`;
+
+const SearchResetButton = styled.div`
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  width: 14px;
+  height: 14px;
+  font-size: 0;
+  background: url(/images/delete.png) no-repeat center;
+  background-size: 100% auto;
+  cursor: pointer;
 `;
