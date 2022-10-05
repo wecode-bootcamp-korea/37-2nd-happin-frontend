@@ -1,0 +1,92 @@
+{
+  "user": [
+    {
+      "userId": 2,
+      "email": "rkdwlstn@mail.com",
+      "userName": "강진수",
+      "gender": "male",
+      "age": 2,
+      "profileImage": "https://youth1.com/sites/all/themes/youth1_2016/images/avatar-default.jpg"
+    }
+  ],
+  "interests": [
+    {
+      "interestId": 1,
+      "interest": "풍경"
+    },
+    {
+      "interestId": 2,
+      "interest": "곤충"
+    },
+    {
+      "interestId": 3,
+      "interest": "하늘"
+    },
+    {
+      "interestId": 4,
+      "interest": "건축"
+    },
+    {
+      "interestId": 5,
+      "interest": "강아지"
+    },
+    {
+      "interestId": 6,
+      "interest": "패션"
+    },
+    {
+      "interestId": 7,
+      "interest": "음식"
+    },
+    {
+      "interestId": 8,
+      "interest": "고양이"
+    },
+    {
+      "interestId": 9,
+      "interest": "게임"
+    },
+    {
+      "interestId": 10,
+      "interest": "영화"
+    }
+  ],
+  "boards": [
+    {
+      "boardId": 2,
+      "boardName": "강아지2"
+    },
+    {
+      "boardId": 39,
+      "boardName": "강아지이이이test"
+    },
+    {
+      "boardId": 40,
+      "boardName": "강아지이이이testttt33t"
+    },
+    {
+      "boardId": 41,
+      "boardName": "강아지이이이testttt111113t"
+    },
+    {
+      "boardId": 43,
+      "boardName": "기본"
+    },
+    {
+      "boardId": 80,
+      "boardName": "강아지이이이testttt111113t"
+    },
+    {
+      "boardId": 81,
+      "boardName": "컨텐츠"
+    },
+    {
+      "boardId": 82,
+      "boardName": "컨텐츠"
+    },
+    {
+      "boardId": 83,
+      "boardName": "컨텐츠2"
+    }
+  ]
+}
