@@ -55,7 +55,7 @@ const IntereststModal = () => {
           Authorization: accessToken,
         },
       }
-      // console.log(response)
+      //console.log(response)
     );
     navigate("/main");
   }

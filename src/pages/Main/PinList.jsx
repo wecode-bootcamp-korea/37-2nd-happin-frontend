@@ -4,7 +4,9 @@ import styled, { keyframes } from "styled-components";
 //import { BOARD_LIST } from "./boardData"; //mock data용
 
 const PinList = ({ photo, boardName }) => {
+  //console.log("boardName", boardName);
   const [select, setSelect] = useState("");
+  //console.log(select);
   const [isStore, setIsStore] = useState(false);
 
   const { pinId, pinImage, title, username, profileImage } = photo;
@@ -20,7 +22,7 @@ const PinList = ({ photo, boardName }) => {
 
   const storePins = e => {
     const pinNumber = e.target.id;
-    fetch(`api/${pinNumber}`, {
+    fetch(`http://10.58.52.214:8000/storing/${pinNumber}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json;charset=utf-8",
@@ -38,15 +40,15 @@ const PinList = ({ photo, boardName }) => {
       })
       .then(data => {
         if (data) {
-          alert("저장되었습니다.");
+          alert("보드에 저장되었습니다.");
         }
       });
-    //console.log("저장");
+    //console.log(select);
   };
 
   const deletePins = e => {
     const pinNumber = e.target.id;
-    fetch(`api/${pinNumber}`, {
+    fetch(`http://10.58.52.214:8000/storing/${pinNumber}`, {
       method: "DLELTE",
       headers: {
         "Content-Type": "application/json;charset=utf-8",
@@ -64,7 +66,7 @@ const PinList = ({ photo, boardName }) => {
       })
       .then(data => {
         if (data) {
-          alert("저장이 취소되었습니다.");
+          alert("보드에서 삭제되었습니다.");
         }
       });
     //console.log("삭제");
@@ -87,7 +89,7 @@ const PinList = ({ photo, boardName }) => {
           </DownloadButton>
           <SelectBox onChange={handleSelect} value={select}>
             {boardName.map(({ id, name }) => (
-              <SelectOption key={id} value={name} default>
+              <SelectOption key={id} value={id} default>
                 {name}
               </SelectOption>
             ))}
