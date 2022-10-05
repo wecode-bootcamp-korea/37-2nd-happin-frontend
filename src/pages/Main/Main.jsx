@@ -106,7 +106,7 @@ const Main = () => {
       const data = await res.json();
       setPins(prev => [...prev, ...data.pins]);
       setIsLoading(true);
-      //console.log(data);
+      console.log(data.pins);
     } else {
       navigate(`/interest`);
     }
