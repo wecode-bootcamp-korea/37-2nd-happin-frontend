@@ -5,6 +5,7 @@ import GlobalStyle from "./styles/GlobalStyle";
 import theme from "./styles/theme";
 import variables from "./styles/variables";
 import Router from "./Router";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
