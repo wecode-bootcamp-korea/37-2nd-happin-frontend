@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "interest": "풍경"
+  },
+  {
+    "id": 2,
+    "interest": "곤충"
+  },
+  {
+    "id": 3,
+    "interest": "하늘"
+  },
+  {
+    "id": 4,
+    "interest": "건축"
+  },
+  {
+    "id": 5,
+    "interest": "강아지"
+  },
+  {
+    "id": 6,
+    "interest": "패션"
+  },
+  {
+    "id": 7,
+    "interest": "음식"
+  },
+  {
+    "id": 8,
+    "interest": "고양이"
+  },
+  {
+    "id": 9,
+    "interest": "게임"
+  },
+  {
+    "id": 10,
+    "interest": "영화"
+  }
+]
