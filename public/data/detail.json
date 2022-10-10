@@ -1,0 +1,59 @@
+{
+  "pin": {
+    "pinId": 43,
+    "title": "음식3",
+    "content": "소주먹자",
+    "userId": 5,
+    "pinImage": "https://wecodeproject.s3.ap-northeast-2.amazonaws.com/food_3.jpeg"
+  },
+  "author": [
+    {
+      "userId": 5,
+      "email": "rladmdtn@mail.com",
+      "userName": "김응수",
+      "gender": "male",
+      "age": 2,
+      "profileImage": "https://youth1.com/sites/all/themes/youth1_2016/images/avatar-default.jpg"
+    }
+  ],
+  "pinInterests": [
+    {
+      "interestId": 7,
+      "interest": "음식"
+    }
+  ],
+  "boards": [
+    {
+      "boardId": 88,
+      "boardName": "기본"
+    },
+    {
+      "boardId": 90,
+      "boardName": "restapi test"
+    },
+    {
+      "boardId": 91,
+      "boardName": "restapi test1"
+    },
+    {
+      "boardId": 92,
+      "boardName": "restapi test2"
+    },
+    {
+      "boardId": 93,
+      "boardName": "정성"
+    },
+    {
+      "boardId": 94,
+      "boardName": "들여"
+    },
+    {
+      "boardId": 95,
+      "boardName": "만드"
+    },
+    {
+      "boardId": 96,
+      "boardName": "는중"
+    }
+  ]
+}

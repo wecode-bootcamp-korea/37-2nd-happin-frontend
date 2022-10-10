@@ -32,11 +32,24 @@ const KakaoLogin = () => {
   }, []);
 
   return (
-    <LogingBackground>
-      <img src={Spinner} alt="로딩중" width="100px" />
-    </LogingBackground>
+    <>
+      <LodingOverlay />
+      <LogingBackground>
+        <img src={Spinner} alt="로딩중" width="100px" />
+      </LogingBackground>
+    </>
   );
 };
+
+const LodingOverlay = styled.div`
+  background-color: ${props => props.theme.style.backgroundWhite};
+  width: 100vw;
+  height: 100px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+`;
 const LogingBackground = styled.div`
   ${props => props.theme.variables.flex};
   margin-top: 300px;

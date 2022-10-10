@@ -33,7 +33,11 @@ const Nav = () => {
       });
   }, []);
 
-  if (window.location.pathname === "/" && "/interest") {
+  if (
+    window.location.pathname === "/" &&
+    "/interest" &&
+    "/auth/kakao/callback"
+  ) {
     return null;
   } else {
     return (
