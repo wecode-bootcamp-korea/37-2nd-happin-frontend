@@ -1,0 +1,52 @@
+{
+  "userInfo": {
+    "userId": 2,
+    "username": "강진수",
+    "email": "rkdwlstn@mail.com",
+    "profileImage": "https://youth1.com/sites/all/themes/youth1_2016/images/avatar-default.jpg"
+  },
+  "createdList": [
+    {
+      "pinId": 2,
+      "pinImage": "https://wecodeproject.s3.ap-northeast-2.amazonaws.com/bug_2.jpg",
+      "boardName": null,
+      "boardId": null
+    },
+    {
+      "pinId": 40,
+      "pinImage": "https://wecodeproject.s3.ap-northeast-2.amazonaws.com/fashion_10.jpg",
+      "boardName": "강아지2",
+      "boardId": 2
+    },
+    {
+      "pinId": 78,
+      "pinImage": "https://wecodeproject.s3.ap-northeast-2.amazonaws.com/scenary_8.jpg",
+      "boardName": null,
+      "boardId": null
+    },
+    {
+      "pinId": 101,
+      "pinImage": "https://wecodeproject.s3.ap-northeast-2.amazonaws.com/1665314562800movie_1.png",
+      "boardName": "강아지이이이test",
+      "boardId": 40
+    },
+    {
+      "pinId": 102,
+      "pinImage": "https://wecodeproject.s3.ap-northeast-2.amazonaws.com/1665378060997movie_1.png",
+      "boardName": null,
+      "boardId": null
+    },
+    {
+      "pinId": 103,
+      "pinImage": "https://wecodeproject.s3.ap-northeast-2.amazonaws.com/1665378139107movie_1.png",
+      "boardName": null,
+      "boardId": null
+    },
+    {
+      "pinId": 104,
+      "pinImage": "https://wecodeproject.s3.ap-northeast-2.amazonaws.com/1665378513133_.jpeg",
+      "boardName": null,
+      "boardId": null
+    }
+  ]
+}

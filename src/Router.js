@@ -6,6 +6,7 @@ import MyPage from "./pages/MyPage/MyPage";
 import Nav from "./components/Nav/Nav";
 import KakaoLogin from "./pages/Login/KakaoLogin";
 import Interest from "../src/pages/Interest/Interest";
+import BoardDetail from "./pages/MyPage/components/BoardDetail";
 
 const Router = () => {
   return (
@@ -17,6 +18,7 @@ const Router = () => {
         <Route path="/my-page" element={<MyPage />} />
         <Route path="/auth/kakao/callback" element={<KakaoLogin />} />
         <Route path="/interest" element={<Interest />} />
+        <Route path="/my-page/:id" element={<MyPage />} />
       </Routes>
     </BrowserRouter>
   );

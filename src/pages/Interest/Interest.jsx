@@ -18,14 +18,14 @@ const IntereststModal = () => {
   const getInterests = async function () {
     let response = await axios({
       method: "GET",
-      // url: GET_INTEREST_INFO,
-      url: "data/interest.json",
+      url: GET_INTEREST_INFO,
+      // url: "data/interest.json",
     });
-    // if (response.status === 200) {
-    setInterests(response.data);
-    // } else {
-    //   throw new Error("자료를 받아오지 못했습니다");
-    // }
+    if (response.status === 200) {
+      setInterests(response.data);
+    } else {
+      throw new Error("자료를 받아오지 못했습니다");
+    }
   };
 
   useEffect(() => {
@@ -55,7 +55,7 @@ const IntereststModal = () => {
           Authorization: accessToken,
         },
       }
-      console.log(response)
+      // console.log(response)
     );
     navigate("/main");
   }
