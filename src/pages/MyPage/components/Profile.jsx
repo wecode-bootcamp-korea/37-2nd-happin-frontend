@@ -1,16 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 
-const Profile = () => {
+const Profile = ({ data }) => {
   return (
     <ProfileContainer>
       <ProfileImg>
-        <img
-          src="https://i.pinimg.com/280x280_RS/9c/d9/3e/9cd93e6d7019a95669a6a18827f98094.jpg"
-          alt="프로필사진"
-        />
+        {data && <img src={data.profileImage} alt="프로필사진" />}
       </ProfileImg>
-      <ProfileId>아이디</ProfileId>
+      {data && <ProfileId>{data.username}</ProfileId>}
       <ButtonContainer>
         <ButtonShare>공유</ButtonShare>
         <ButtonModify>프로필수정</ButtonModify>
@@ -44,9 +41,11 @@ const ProfileId = styled.div`
 `;
 
 const ProfileImg = styled.div`
+  width: 120px;
   margin-top: 20px;
 
   img {
+    width: 100%;
     border-radius: 50%;
   }
 `;

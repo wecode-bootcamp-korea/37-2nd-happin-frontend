@@ -1,0 +1,21 @@
+{
+  "boardId": "2",
+  "pins": [
+    {
+      "pinId": 37,
+      "pinImage": "https://wecodeproject.s3.ap-northeast-2.amazonaws.com/fashion_7.jpg"
+    },
+    {
+      "pinId": 40,
+      "pinImage": "https://wecodeproject.s3.ap-northeast-2.amazonaws.com/fashion_10.jpg"
+    },
+    {
+      "pinId": 61,
+      "pinImage": "https://wecodeproject.s3.ap-northeast-2.amazonaws.com/movie_1.png"
+    },
+    {
+      "pinId": 98,
+      "pinImage": "https://wecodeproject.s3.ap-northeast-2.amazonaws.com/structure_8.jpg"
+    }
+  ]
+}
