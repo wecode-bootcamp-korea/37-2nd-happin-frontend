@@ -9,8 +9,12 @@ export const API = {
   DETAIL: `${BASE_URL}/get`,
   BOARD: `${BASE_URL}/boards`,
   MYPAGE: `${BASE_URL}/profile/stored`,
+  POST_DETAIL: `${BASE_URL}/storing/`,
 };
 
 export const GET_PRODUCT_API = `${BASE_URL}/products`;
 export const GET_INTEREST_INFO = `${BASE_URL}/user/interest`;
 export const POST_INTEREST_INFO = `${BASE_URL}/main/interest`;
+};
+
+//export const GET_DETAIL_API = `${BASE_URL}/`;
