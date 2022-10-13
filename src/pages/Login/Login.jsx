@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { KAKAO_OAUTH_URL } from "./OAUTH_URL";
 import styled from "styled-components";
 import BackgroundImg from "../../assets/images/background03.jpg";

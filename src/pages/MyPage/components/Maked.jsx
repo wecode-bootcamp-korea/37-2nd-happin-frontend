@@ -2,27 +2,24 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
+import { API, accessToken } from "../../../config";
 
 const Maked = () => {
   const [data, setData] = useState([]);
-  const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzksImlhdCI6MTY2NTM2OTA0NX0.3mKfvlwRu0j8xP1lWAAYzDWSnmFPAt3ayw2Q5p9MoIE";
   const removePin = e => {
     const postRemove = async () => {
-      const response = await fetch(
-        `http://10.58.52.214:8000/pin/${e.target.id}`,
-        {
-          method: "POST",
-          headers: { authorization: token },
-        }
-      );
+      const response = await fetch(`${API.MAKED_PIN}/${e.target.id}`, {
+        method: "DELETE",
+        headers: { authorization: accessToken },
+      });
       return response.json();
     };
 
     postRemove()
       .then(res => {
         //eslint-disable-next-line
-        console.log(res);
+        alert("삭제됐수");
+        window.location.replace("/my-page/maked");
       })
       .catch(res =>
         //eslint-disable-next-line
@@ -31,61 +28,62 @@ const Maked = () => {
   };
 
   useEffect(() => {
-    fetch("http://10.58.52.214:8000/profile/created", {
-      headers: { authorization: token },
+    fetch(`${API.GET_PIN}`, {
+      headers: { authorization: accessToken },
     })
       .then(res => res.json())
       .then(data => setData([...data.createdList]));
-  }, [data]);
+  }, []);
 
   return (
     <SavedContainer>
-      <ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}>
-        <Masonry>
-          {data &&
-            data.map((ele, i) => {
-              return (
-                <SavedImgBox key={ele.pinId}>
-                  <button id={ele.pinId} onClick={removePin}>
-                    삭제
-                  </button>
-                  <Link to={`/pin/${ele.pinId}`}>
-                    <SavedImg src={ele.pinImage} />
-                  </Link>
-                </SavedImgBox>
-              );
-            })}{" "}
-        </Masonry>
-      </ResponsiveMasonry>
+      <Masonry columnsCount={4} gutter="30px">
+        {data &&
+          data.map((ele, i) => {
+            return (
+              <SavedImgBox key={ele.pinId}>
+                <button id={ele.pinId} onClick={removePin}>
+                  삭제
+                </button>
+                <Link to={`/pin/${ele.pinId}`}>
+                  <SavedImg src={ele.pinImage} />
+                </Link>
+              </SavedImgBox>
+            );
+          })}{" "}
+      </Masonry>
     </SavedContainer>
   );
 };
 
 const SavedContainer = styled.div`
-  padding-top: 30px;
+  position: relative;
+  padding: 30px 100px 0;
 `;
 
 const SavedImgBox = styled.div`
-  position: relative;
-  width: 100%;
   z-index: 0;
 
   button {
     position: absolute;
+    right: 10px;
+    top: 10px;
     padding: 10px;
     border: none;
     border-radius: 10px;
     background-color: red;
+    color: #fff;
     cursor: pointer;
 
     &:hover {
-      background-color: white;
+      background-color: #999;
+      opacity: 0.7;
     }
   }
 `;
 
 const SavedImg = styled.img`
-  width: 263px;
+  width: 100%;
   border-radius: 20px;
 `;
 

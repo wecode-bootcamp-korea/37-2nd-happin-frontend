@@ -3,12 +3,13 @@ import styled from "styled-components";
 import { FiLink } from "react-icons/fi";
 import { BiDownload } from "react-icons/bi";
 import BoardSelect from "./BoardSelect";
-import { API, accessToken } from "../../config";
+import { API } from "../../config";
 
-const DetailUpper = ({ pinData }) => {
+const DetailUpper = ({ pinData, selectedBoardId, setSelectedBoardId }) => {
+  const accessToken = localStorage.getItem("token");
+  console.log(pinData);
   const { pinId, title, content, pinImage } = pinData.pin;
   const { email, userName, profileImage } = pinData.author[0];
-  const [selectedBoardId, setSelectedBoardId] = useState("");
 
   async function copyLink(e) {
     try {
@@ -24,7 +25,7 @@ const DetailUpper = ({ pinData }) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json;charset=utf-8",
-        athorization: accessToken,
+        authorization: accessToken,
       },
       body: JSON.stringify({
         boardId: selectedBoardId,
@@ -34,7 +35,6 @@ const DetailUpper = ({ pinData }) => {
         if (response.status === 200) {
           return response.json();
         }
-        throw new Error("데이터 전송에 실패했습니다");
       })
       .catch(error => console.log(error));
   };
@@ -57,6 +57,7 @@ const DetailUpper = ({ pinData }) => {
           <BoardSelect
             pinData={pinData}
             setSelectedBoardId={setSelectedBoardId}
+            selectedBoardId={selectedBoardId}
           />
           <Button onClick={postBoardId}>저장</Button>
         </DetailContentHeader>
@@ -84,7 +85,7 @@ const DetailUpper = ({ pinData }) => {
 
 const DetailContentContainer = styled.div`
   display: flex;
-  margin-top: 80px;
+  margin-top: 110px;
   width: 1016px;
   border-radius: 20px;
   box-shadow: 0px 8px 10px 4px #b3b1b1;

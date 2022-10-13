@@ -3,21 +3,19 @@ import styled from "styled-components";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { Link } from "react-router-dom";
-import { accessToken } from "../../../config";
+import { API, accessToken } from "../../../config";
 //기본으로 저장됨 데이터가 들어와서 state에 저장
 // 저장됨 생성됨을 누르면 해당 데이터를 state에 업데이트 함.
 
 function BoardCreateModal(props) {
   const [boardName, setBoardName] = useState("");
-  const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzksImlhdCI6MTY2NTM2OTA0NX0.3mKfvlwRu0j8xP1lWAAYzDWSnmFPAt3ayw2Q5p9MoIE";
   const makeBoard = e => {
     e.preventDefault();
     const postData = async () => {
-      const response = await fetch("http://10.58.52.214:8000/boards", {
+      const response = await fetch(`${API.BOARD}`, {
         method: "POST",
         headers: {
-          authorization: token,
+          authorization: accessToken,
           "Content-Type": "application/json;charset=utf-8",
         },
         body: JSON.stringify({ boardName: boardName }),
@@ -67,10 +65,6 @@ function BoardCreateModal(props) {
 const Boards = ({ data }) => {
   const [modalShow, setModalShow] = React.useState(false);
   // const [boards, setBoards] = useState([...data]);
-
-  const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzksImlhdCI6MTY2NTM2OTA0NX0.3mKfvlwRu0j8xP1lWAAYzDWSnmFPAt3ayw2Q5p9MoIE";
-
   // useEffect(() => {
   //   const fetchData = async () => {
   //     const response = await fetch("http://10.58.52.214:8000/boards", {
@@ -84,13 +78,10 @@ const Boards = ({ data }) => {
 
   const deleteBoard = async e => {
     console.log(e.target.name);
-    const response = await fetch(
-      `http://10.58.52.214:8000/boards/${e.target.name}`,
-      {
-        method: "DELETE",
-        headers: { authorization: token },
-      }
-    );
+    const response = await fetch(`${API.BOARD}/${e.target.name}`, {
+      method: "DELETE",
+      headers: { authorization: accessToken },
+    });
 
     const result = await response.json();
     console.log(result);

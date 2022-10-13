@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-const BoardSelect = ({ pinData, setSelectedBoardId }) => {
+const BoardSelect = ({ pinData, setSelectedBoardId, selectedBoardId }) => {
   const getBoardId = e => {
     setSelectedBoardId(e.target.value.boardId);
   };

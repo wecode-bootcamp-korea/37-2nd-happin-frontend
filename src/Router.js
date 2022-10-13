@@ -21,7 +21,7 @@ const Router = () => {
         <Route path="/interest" element={<Interest />} />
         <Route path="/my-page/:id" element={<MyPage />} />
         <Route path="/pin-builder" element={<PinBuilder />} />
-        <Route path="/detail" element={<Detail />} />
+        <Route path="/detail/:pinId" element={<Detail />} />
       </Routes>
     </BrowserRouter>
   );

@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Search from "./Search";
 import styled from "styled-components";
+import { API, accessToken } from "../../config";
 
 const Nav = () => {
+  const TOKEN = localStorage.getItem("token");
   const [userInfo, setUserInfo] = useState([]);
   const navigate = useNavigate();
   const goToMain = () => {
@@ -13,7 +15,7 @@ const Nav = () => {
     navigate(`/pin-builder`);
   };
   const goToMyPage = () => {
-    navigate(`/my-page`);
+    navigate(`/my-page/saved`);
   };
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -21,17 +23,18 @@ const Nav = () => {
   };
 
   useEffect(() => {
-    fetch(`http://43.201.98.87:8000/main`, {
-      headers: {
-        "Content-Type": "application/json;charset=utf-8",
-        Authorization: localStorage.getItem("token"),
-      },
-    })
-      .then(res => res.json())
-      .then(data => {
-        setUserInfo(data.users);
-      });
-  }, []);
+    TOKEN &&
+      fetch(`${API.MAIN}`, {
+        headers: {
+          "Content-Type": "application/json;charset=utf-8",
+          Authorization: TOKEN,
+        },
+      })
+        .then(res => res.json())
+        .then(data => {
+          setUserInfo(data.users);
+        });
+  }, [TOKEN]);
 
   if (
     window.location.pathname === "/" &&
@@ -43,17 +46,18 @@ const Nav = () => {
     return (
       <NavLayout>
         <NavWrap>
-          <Logo src="./images/happin_logo.jpeg" alt="로고" onClick={goToMain} />
+          <Logo src="/images/happin_logo.jpeg" alt="로고" onClick={goToMain} />
           <HomeMenu onClick={goToMain}>홈</HomeMenu>
           <PinMenu onClick={goToPinBuilder}>핀 만들기</PinMenu>
           <Search />
-          {userInfo.map(({ id, profile_image, username }) => (
-            <ProfileArea key={id}>
-              <ProfileImg src={profile_image} onClick={goToMyPage} />
-              <ProfileModal>내 프로필</ProfileModal>
-              <MyName>{username} 님</MyName>
-            </ProfileArea>
-          ))}
+          {userInfo &&
+            userInfo.map(({ id, profile_image, username }) => (
+              <ProfileArea key={id}>
+                <ProfileImg src={profile_image} onClick={goToMyPage} />
+                <ProfileModal>내 프로필</ProfileModal>
+                <MyName>{username} 님</MyName>
+              </ProfileArea>
+            ))}
           <Logout onClick={handleLogout} />
         </NavWrap>
       </NavLayout>

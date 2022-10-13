@@ -5,9 +5,11 @@ import PinList from "./PinList";
 import Filter from "./Filter";
 import styled from "styled-components";
 import LoadingImage from "../../assets/images/loading.gif";
+import { API, accessToken } from "../../config";
 //const API_KEY = process.env.UNSPLASH_API_KEY;
 
 const Main = () => {
+  const TOKEN = localStorage.getItem("token");
   const [pins, setPins] = useState([]);
   const [page, setPage] = useState(0); //스크롤이 닿았을 때 새롭게 데이터 페이지를 바꿀 state
   //console.log("offset 현재 값:", page);
@@ -26,10 +28,6 @@ const Main = () => {
   //const { state } = useLocation();
   //console.log("필터 url:", query);
   //console.log("검색어 url:", location.state);
-  localStorage.setItem(
-    "token",
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzksImlhdCI6MTY2NTM2OTA0NX0.3mKfvlwRu0j8xP1lWAAYzDWSnmFPAt3ayw2Q5p9MoIE"
-  );
 
   const handleChange = (name, value) => {
     const values = params.getAll(name);
@@ -65,10 +63,10 @@ const Main = () => {
   }, []);
 
   useEffect(() => {
-    fetch(`http://43.201.98.87:8000/main`, {
+    fetch(`${API.MAIN}`, {
       headers: {
         "Content-Type": "application/json;charset=utf-8",
-        Authorization: localStorage.getItem("token"),
+        Authorization: TOKEN,
       },
     })
       .then(res => res.json())
@@ -77,12 +75,12 @@ const Main = () => {
 
   useEffect(() => {
     //쿼리문을 통한 API받기
-    fetch(`http://43.201.98.87:8000/main?${query}&offset=${page}&limit=20`, {
+    fetch(`${API.MAIN}?${query}&offset=${page}&limit=20`, {
       //`http://10.58.52.112:8000/main?${query}&offset=${page}&limit=20`
       //`http://localhost:3000/main?${query}&offset=${page}&limit=20`
       headers: {
         "Content-Type": "application/json;charset=utf-8",
-        Authorization: localStorage.getItem("token"),
+        Authorization: TOKEN,
       },
     })
       .then(res => res.json())
@@ -93,15 +91,16 @@ const Main = () => {
 
   const fetchPins = async page => {
     const res = await fetch(
-      `http://43.201.98.87:8000/main?offset=${page}&limit=20`,
+      `${API.MAIN}?offset=${page}&limit=20`,
       //`https://api.unsplash.com/photos/?client_id=${API_KEY}&page=${page}&per_page=10`, // mockdata용
       {
         headers: {
           "Content-Type": "application/json;charset=utf-8",
-          Authorization: localStorage.getItem("token"),
+          Authorization: TOKEN,
         },
       }
     );
+    console.log(res);
     if (res.status === 200) {
       const data = await res.json();
       setPins(prev => [...prev, ...data.pins]);

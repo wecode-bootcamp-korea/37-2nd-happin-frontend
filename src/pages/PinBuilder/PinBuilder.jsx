@@ -4,6 +4,7 @@ import styled from "styled-components";
 import UpperContents from "./UploadForm/UpperContents";
 import LowerContents from "./UploadForm/LowerContents";
 import { useNavigate } from "react-router-dom";
+import { API, accessToken } from "../../config";
 
 const PinBuilder = () => {
   const [submitPin, setSubmitPin] = useState({
@@ -20,15 +21,14 @@ const PinBuilder = () => {
   const [boards, setBoards] = useState([]);
   const navigate = useNavigate();
   // const token = localStorage.getItem('token'); http://10.58.52.214:8000/pin ///data/pinBuilder.json
-  const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzksImlhdCI6MTY2NTM2OTA0NX0.3mKfvlwRu0j8xP1lWAAYzDWSnmFPAt3ayw2Q5p9MoIE";
-
+  console.log(submitPin);
   useEffect(() => {
     async function fetchData() {
-      const response = await fetch("http://10.58.52.214:8000/pin", {
-        headers: { authorization: token },
+      const response = await fetch(`${API.MAKED_PIN}`, {
+        headers: { authorization: accessToken },
       });
       const data = response.json();
+
       return data;
     }
 
@@ -36,7 +36,11 @@ const PinBuilder = () => {
       setUserData(data.user);
       setInterests(data.interests);
       setBoards(data.boards);
-      setSubmitPin({ ...submitPin, userId: data.user.userId });
+      setSubmitPin({
+        ...submitPin,
+        userId: data.user.userId,
+        boardId: data.boards[0].boardId,
+      });
     });
     //eslint-disable-next-line
   }, []);
@@ -51,14 +55,14 @@ const PinBuilder = () => {
     formData.append("boardId", submitPin.boardId);
     formData.append("interests", selectInt);
 
-    // for (let pair of formData.entries()) {
-    //   console.log(pair[0] + ", " + pair[1]);
-    // }
+    for (let pair of formData.entries()) {
+      console.log(pair[0] + ", " + pair[1]);
+    }
 
-    let response = await fetch("http://10.58.52.214:8000/pin", {
+    let response = await fetch(`${API.MAKED_PIN}`, {
       method: "POST",
       headers: {
-        authorization: token,
+        authorization: accessToken,
         enctype: "multipart/form-data",
       },
       body: formData,

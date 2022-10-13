@@ -5,7 +5,7 @@ import Profile from "./components/Profile";
 import BoardDetail from "./components/BoardDetail";
 import styled from "styled-components";
 import { Link, useParams } from "react-router-dom";
-
+import { API, accessToken } from "../../config";
 //http://10.58.52.214:8000/profile/_created
 
 const MyPage = () => {
@@ -13,11 +13,9 @@ const MyPage = () => {
   const [selectTab, setSelectTab] = useState("저장됨");
   const [data, setData] = useState([]);
   // /data/mypage.json
-  const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzksImlhdCI6MTY2NTM2OTA0NX0.3mKfvlwRu0j8xP1lWAAYzDWSnmFPAt3ayw2Q5p9MoIE";
   useEffect(() => {
-    fetch("http://10.58.52.214:8000/profile/stored", {
-      headers: { authorization: token },
+    fetch(`${API.MYPAGE}`, {
+      headers: { authorization: accessToken },
     })
       .then(res => res.json())
       .then(data => setData(data));
@@ -48,7 +46,7 @@ const MyPage = () => {
             {selectTab === "생성됨" ? (
               <Maked data={data.createdList} />
             ) : (
-              <Boards data={data.boards} token={token} />
+              <Boards data={data.boards} token={accessToken} />
             )}
           </TabContainer>
         </MyPageContainer>
@@ -86,6 +84,6 @@ const TabSelectBtn = styled.button`
 `;
 
 const MyPageContainer = styled.div`
-  padding-top: 76px;
+  margin-top: 100px;
 `;
 export default MyPage;
