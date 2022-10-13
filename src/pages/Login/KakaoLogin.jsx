@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { API } from "../../config";
 import Spinner from "../../assets/images/login-loading.gif";
 
 const KakaoLogin = () => {
@@ -11,13 +12,13 @@ const KakaoLogin = () => {
     let code = new URL(window.location.href).searchParams.get("code");
 
     let response = await axios({
-      url: "http://10.58.52.112:8000/user/signin",
+      url: `${API.LOGIN}`,
       method: "POST",
       data: {
         code: code,
       },
     });
-
+    console.log(response);
     if (response.status === 200) {
       localStorage.setItem("token", response.data.accessToken);
       navigate("/main");

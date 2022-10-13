@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
+import { API, accessToken } from "../../config";
 //import { BOARD_LIST } from "./boardData"; //mock data용
 
 const PinList = ({ photo, boardName }) => {
   //console.log("boardName", boardName);
   const [select, setSelect] = useState("");
-  //console.log(select);
+  console.log(select);
   const [isStore, setIsStore] = useState(false);
 
   const { pinId, pinImage, title, username, profileImage } = photo;
@@ -22,11 +23,11 @@ const PinList = ({ photo, boardName }) => {
 
   const storePins = e => {
     const pinNumber = e.target.id;
-    fetch(`http://10.58.52.214:8000/storing/${pinNumber}`, {
+    fetch(`${API.POST_DETAIL}/${pinNumber}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json;charset=utf-8",
-        Authorization: localStorage.getItem("token"),
+        Authorization: accessToken,
       },
       body: JSON.stringify({
         boardId: select,
@@ -43,16 +44,16 @@ const PinList = ({ photo, boardName }) => {
           alert("보드에 저장되었습니다.");
         }
       });
-    //console.log(select);
+    console.log(select);
   };
 
   const deletePins = e => {
     const pinNumber = e.target.id;
-    fetch(`http://10.58.52.214:8000/storing/${pinNumber}`, {
+    fetch(`${API.POST_DETAIL}/${pinNumber}`, {
       method: "DLELTE",
       headers: {
         "Content-Type": "application/json;charset=utf-8",
-        Authorization: localStorage.getItem("token"),
+        Authorization: accessToken,
       },
       body: JSON.stringify({
         boardId: select,
@@ -97,7 +98,7 @@ const PinList = ({ photo, boardName }) => {
         </PinInfo>
       </PinTop>
       <PinText>
-        <Link to={`/pin/${pinId}`}>
+        <Link to={`/detail/${pinId}`}>
           <PinTitle>{title}</PinTitle>
           <UserInfo key={pinId}>
             <UserProfile src={profileImage} />

@@ -2,18 +2,18 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 
 const UpperContents = ({ boards, setSubmitPin, setImageSrc }) => {
-  useEffect(() => {
-    const getData = async () => {
-      const response = await fetch("", {
-        headers: {
-          userId: 2,
-        },
-      });
-      return response;
-    };
-    //eslint-disable-next-line
-    getData().then(res => console.log(res));
-  });
+  // useEffect(() => {
+  //   const getData = async () => {
+  //     const response = await fetch("", {
+  //       headers: {
+  //         userId: 2,
+  //       },
+  //     });
+  //     return response;
+  //   };
+  //   //eslint-disable-next-line
+  //   getData().then(res => console.log(res));
+  // });
 
   const handleSelect = e => {
     setSubmitPin(prev => ({ ...prev, boardId: e.target.value }));
@@ -82,6 +82,7 @@ const SelectBox = styled.div`
     border: none;
     border-radius: 0px 8px 8px 0px;
     background-color: ${props => props.theme.style.pinterRed};
+    color: white;
 
     cursor: pointer;
 

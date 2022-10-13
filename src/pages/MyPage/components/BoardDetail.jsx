@@ -2,18 +2,17 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Masonry from "react-responsive-masonry";
 import { useParams } from "react-router-dom";
+import { API, accessToken } from "../../../config";
 
 const BoardDetail = () => {
   const [pins, setPins] = useState([]);
-  const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzksImlhdCI6MTY2NTM2OTA0NX0.3mKfvlwRu0j8xP1lWAAYzDWSnmFPAt3ayw2Q5p9MoIE";
   // const id = 2; // 얘 mypage에서 props로 넘겨 받기.
   //`http://10.58.52.214:8000/board/${id}`
   const { id } = useParams();
   useEffect(() => {
     const getData = async () => {
-      const response = await fetch(`http://10.58.52.214:8000/boards/${id}`, {
-        headers: { authorization: token },
+      const response = await fetch(`${API.BOARD}/${id}`, {
+        headers: { authorization: accessToken },
       });
       return response.json();
     };
@@ -23,13 +22,10 @@ const BoardDetail = () => {
   const removePin = e => {
     console.log(e.target.id);
     const postRemove = async () => {
-      const response = await fetch(
-        `http://10.58.52.214:8000/boards/${id}/${e.target.id}`,
-        {
-          method: "DELETE",
-          headers: { authorization: token },
-        }
-      );
+      const response = await fetch(`${API.BOARD}/${id}/${e.target.id}`, {
+        method: "DELETE",
+        headers: { authorization: accessToken },
+      });
       return response.json();
     };
 
@@ -59,7 +55,7 @@ const BoardDetail = () => {
 };
 
 const PinContainer = styled.div`
-  padding-top: 76px;
+  margin: 130px 100px 0 100px;
 `;
 
 const Pins = styled.div`
@@ -73,15 +69,18 @@ const Pins = styled.div`
 
   button {
     position: absolute;
-    right: 0px;
+    top: 10px;
+    right: 10px;
     padding: 10px;
     border: none;
     border-radius: 10px;
     background-color: red;
+    color: #fff;
     cursor: pointer;
 
     &:hover {
-      background-color: white;
+      background-color: #999;
+      opacity: 0.7;
     }
   }
 `;

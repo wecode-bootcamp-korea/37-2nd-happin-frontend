@@ -2,15 +2,12 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import {
-  GET_INTEREST_INFO,
-  POST_INTEREST_INFO,
-  accessToken,
-} from "../../config";
+import { API } from "../../config";
 import InterestBackgroundImg from "../../assets/images/background05.jpg";
 import HelloImg from "../../assets/images/hello.gif";
 
 const IntereststModal = () => {
+  const accessToken = localStorage.getItem("token");
   const [interests, setInterests] = useState([]);
   const [selectedInterestList, setSelectedInterestList] = useState([]);
   const navigate = useNavigate();
@@ -18,7 +15,7 @@ const IntereststModal = () => {
   const getInterests = async function () {
     let response = await axios({
       method: "GET",
-      url: GET_INTEREST_INFO,
+      url: `${API.GET_INTEREST}`,
       // url: "data/interest.json",
     });
     if (response.status === 200) {
@@ -47,17 +44,18 @@ const IntereststModal = () => {
   };
 
   function postInterstInfo() {
-    axios.post(
-      POST_INTEREST_INFO,
-      { interest: selectedInterestList },
-      {
-        headers: {
-          Authorization: accessToken,
-        },
-      }
-      //console.log(response)
-    );
-    navigate("/main");
+    axios
+      .post(
+        `${API.POST_INTEREST}`,
+        { interest: selectedInterestList },
+        {
+          headers: {
+            Authorization: accessToken,
+          },
+        }
+        //console.log(response)
+      )
+      .then(() => navigate(`/main`));
   }
 
   return (
@@ -110,6 +108,10 @@ const IntereststModal = () => {
 };
 
 const InterestBackground = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
   height: 100vh;
   width: 100vw;
   background-image: url(${InterestBackgroundImg});
