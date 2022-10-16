@@ -31,25 +31,25 @@
 - [시연영상 보러가기](https://youtu.be/MCibh9Fkcoo)
 
 - #### 소셜 로그인
-<img width="1434" alt="소셜로그인" src="https://user-images.githubusercontent.com/67556491/196030918-757fb293-64df-4ef2-bafc-c8ac60bb1ac7.png">
+<img width="663" alt="소셜로그인" src="https://user-images.githubusercontent.com/67556491/196030918-757fb293-64df-4ef2-bafc-c8ac60bb1ac7.png">
 
 - #### 관심사 선택
-<img width="1427" alt="관심사선택 " src="https://user-images.githubusercontent.com/67556491/196030933-6ccb214e-6c4c-4ccc-abd9-1e5022550ee5.png">
+<img width="663" alt="관심사선택 " src="https://user-images.githubusercontent.com/67556491/196030933-6ccb214e-6c4c-4ccc-abd9-1e5022550ee5.png">
 
 - #### 메인
-<img width="1417" alt="main" src="https://user-images.githubusercontent.com/67556491/196030912-98de66f2-ece5-400e-93df-0b4d3796f65b.png">
+<img width="663" alt="main" src="https://user-images.githubusercontent.com/67556491/196030912-98de66f2-ece5-400e-93df-0b4d3796f65b.png">
 
 - #### 상세
 <img width="663" alt="상세" src="https://user-images.githubusercontent.com/67556491/196031436-7bd56e32-f867-4acf-8a48-64d1dc0cfbeb.png">
 
 - #### 핀생성
-<img width="691" alt="핀생성" src="https://user-images.githubusercontent.com/67556491/196030954-80ecdf12-7f18-4ba4-a513-c29ca221037f.png">
+<img width="663" alt="핀생성" src="https://user-images.githubusercontent.com/67556491/196030954-80ecdf12-7f18-4ba4-a513-c29ca221037f.png">
 
 - #### 마이페이지 - 저장됨
-<img width="758" alt="마이페이지_저장됨" src="https://user-images.githubusercontent.com/67556491/196031439-99a06935-a729-4a53-9bc1-c3ca7dad69a3.png">
+<img width="663" alt="마이페이지_저장됨" src="https://user-images.githubusercontent.com/67556491/196031439-99a06935-a729-4a53-9bc1-c3ca7dad69a3.png">
 
 - #### 마이페이지 - 생성됨
-<img width="1391" alt="마이페이지_생성됨" src="https://user-images.githubusercontent.com/67556491/196031443-02108f32-ab58-4a65-824e-5a4453c8bc56.png">
+<img width="900" alt="마이페이지_생성됨" src="https://user-images.githubusercontent.com/67556491/196031443-02108f32-ab58-4a65-824e-5a4453c8bc56.png">
 
 
 
