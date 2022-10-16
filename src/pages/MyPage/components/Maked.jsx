@@ -62,7 +62,7 @@ const SavedContainer = styled.div`
 `;
 
 const SavedImgBox = styled.div`
-  z-index: 0;
+  position: relative;
 
   button {
     position: absolute;

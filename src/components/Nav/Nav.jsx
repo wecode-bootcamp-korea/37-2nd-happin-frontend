@@ -156,5 +156,6 @@ const Logout = styled.button`
     content: "\f08b";
     font-family: FontAwesome;
     font-size: 20px;
+    margin-left: 10px;
   }
 `;

@@ -7,7 +7,6 @@ import { API } from "../../config";
 
 const DetailUpper = ({ pinData, selectedBoardId, setSelectedBoardId }) => {
   const accessToken = localStorage.getItem("token");
-  console.log(pinData);
   const { pinId, title, content, pinImage } = pinData.pin;
   const { email, userName, profileImage } = pinData.author[0];
 
@@ -33,7 +32,7 @@ const DetailUpper = ({ pinData, selectedBoardId, setSelectedBoardId }) => {
     })
       .then(response => {
         if (response.status === 200) {
-          return response.json();
+          alert("저장 성공했습니다!");
         }
       })
       .catch(error => console.log(error));

@@ -7,13 +7,13 @@ import { API, accessToken } from "../../config";
 const PinList = ({ photo, boardName }) => {
   //console.log("boardName", boardName);
   const [select, setSelect] = useState("");
-  console.log(select);
+  // console.log(select);
   const [isStore, setIsStore] = useState(false);
-
   const { pinId, pinImage, title, username, profileImage } = photo;
 
   const handleSelect = e => {
     setSelect(e.target.value);
+    console.log(e.target.value);
   };
 
   const handleStoreButton = () => {
@@ -37,7 +37,6 @@ const PinList = ({ photo, boardName }) => {
         if (res.ok === true) {
           return res.json();
         }
-        throw new Error("POST 통신실패");
       })
       .then(data => {
         if (data) {

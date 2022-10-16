@@ -35,7 +35,7 @@ export default Search;
 
 const SearchArea = styled.form`
   position: relative;
-  width: calc(100% - 269px);
+  width: calc(100% - 350px);
   margin: 0 0 0 10px;
 `;
 

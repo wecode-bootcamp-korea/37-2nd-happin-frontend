@@ -43,9 +43,9 @@ const Overlay = styled.div`
 const LoginWrapper = styled.div`
   ${props => props.theme.variables.flex("column")}
   background-color: ${props => props.theme.style.backgroundWhite};
-  padding: 40px 65px;
+  padding: 100px 85px;
   border-radius: 10px;
-  box-shadow: 0 20px 24xpx rgba(0, 0, 0, 0.6);
+  box-shadow: 0 30px 40xpx rgba(196, 192, 192, 0.6);
 `;
 
 const LoginLogo = styled.img`
