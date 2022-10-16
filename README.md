@@ -22,7 +22,7 @@ Happin
 ### **개발 인원 및 기간**
 
 - 개발기간 : 2022.10. 04 - 2022.10.13(2주)
-- 개발 인원 : 프론트엔드 4명, 백엔드 3명
+- 개발 인원 : 프론트엔드 3명, 백엔드 2명
 
 [[https://github.com/wecode-bootcamp-korea/37-1st-ZINWOOS-backend](https://github.com/wecode-bootcamp-korea/37-1st-ZINWOOS-backend)](https://github.com/wecode-bootcamp-korea/37-2nd-happin-frontend)
 
