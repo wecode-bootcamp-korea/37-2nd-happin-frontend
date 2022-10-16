@@ -41,11 +41,13 @@ const ProfileId = styled.div`
 `;
 
 const ProfileImg = styled.div`
-  width: 120px;
+  width: 200px;
+  height: 200px;
   margin-top: 20px;
 
   img {
     width: 100%;
+    height: 100%;
     border-radius: 50%;
   }
 `;

@@ -20,7 +20,6 @@ const BoardDetail = () => {
   }, []);
 
   const removePin = e => {
-    console.log(e.target.id);
     const postRemove = async () => {
       const response = await fetch(`${API.BOARD}/${id}/${e.target.id}`, {
         method: "DELETE",
@@ -31,7 +30,8 @@ const BoardDetail = () => {
 
     postRemove()
       .then(res => {
-        console.log(res.status); //200
+        alert("삭제되었습니다");
+        window.location.replace(`/my-page/${id}`);
       })
       .catch(res => console.log("hi"));
   };

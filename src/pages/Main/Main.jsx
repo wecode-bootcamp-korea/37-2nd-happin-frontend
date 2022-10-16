@@ -31,6 +31,7 @@ const Main = () => {
 
   const handleChange = (name, value) => {
     const values = params.getAll(name);
+
     //console.log(`필터 값: ${value}`);
     if (values.includes(value)) {
       removeValue(values, name, value);
@@ -100,12 +101,12 @@ const Main = () => {
         },
       }
     );
-    console.log(res);
+    // console.log(res);
     if (res.status === 200) {
       const data = await res.json();
       setPins(prev => [...prev, ...data.pins]);
       setIsLoading(true);
-      console.log(data.pins);
+      // console.log(data.pins);
     } else {
       navigate(`/interest`);
     }
@@ -143,9 +144,10 @@ const Main = () => {
       <Filter isToggle={isToggle} handleChange={handleChange} />
       <PinWrap active={isToggle}>
         <Masonry columnsCount={4} gutter="20px">
-          {pins.map((photo, index) => (
-            <PinList key={index} photo={photo} boardName={boardName} />
-          ))}
+          {pins &&
+            pins.map((photo, index) => (
+              <PinList key={index} photo={photo} boardName={boardName} />
+            ))}
         </Masonry>
         <Loading ref={pageEnd} />
       </PinWrap>

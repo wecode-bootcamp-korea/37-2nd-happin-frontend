@@ -4,8 +4,6 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { Link } from "react-router-dom";
 import { API, accessToken } from "../../../config";
-//기본으로 저장됨 데이터가 들어와서 state에 저장
-// 저장됨 생성됨을 누르면 해당 데이터를 state에 업데이트 함.
 
 function BoardCreateModal(props) {
   const [boardName, setBoardName] = useState("");
@@ -82,13 +80,25 @@ const Boards = ({ data }) => {
       method: "DELETE",
       headers: { authorization: accessToken },
     });
-
-    const result = await response.json();
-    console.log(result);
+    if (response.status === 200) {
+      alert("삭제되었습니다");
+      window.location.replace("/my-page/saved");
+    }
   };
 
   return (
     <BoardContainer>
+      <div className="modalBtn">
+        <Button variant="primary" onClick={() => setModalShow(true)}>
+          보드 추가
+        </Button>
+
+        <BoardCreateModal
+          show={modalShow}
+          onHide={() => setModalShow(false)}
+          dialogClassName="modal-90w"
+        />
+      </div>
       <BoardSection>
         {data &&
           data.map(ele => {
@@ -99,14 +109,14 @@ const Boards = ({ data }) => {
                     <Link to={`/my-page/${ele.boardId}`}>
                       <img src={ele.thumbnail} alt={ele.boardName} />
                     </Link>
-                    <div>
+                    <BoardBox>
                       <span>{ele.boardName}</span>
                       <span>
-                        <button name={ele.boardId} onClick={deleteBoard}>
+                        <DelBtn name={ele.boardId} onClick={deleteBoard}>
                           삭제
-                        </button>
+                        </DelBtn>
                       </span>
-                    </div>
+                    </BoardBox>
                   </>
                 ) : (
                   <>
@@ -116,31 +126,19 @@ const Boards = ({ data }) => {
                         alt="이미지없음"
                       />
                     </Link>
-                    <div>
+                    <BoardBox>
                       <span>{ele.boardName}</span>
                       <span>
-                        <button name={ele.boardId} onClick={deleteBoard}>
+                        <DelBtn name={ele.boardId} onClick={deleteBoard}>
                           삭제
-                        </button>
+                        </DelBtn>
                       </span>
-                    </div>
+                    </BoardBox>
                   </>
                 )}
               </Board>
             );
           })}
-
-        <div className="modalBtn">
-          <Button variant="primary" onClick={() => setModalShow(true)}>
-            보드 추가
-          </Button>
-
-          <BoardCreateModal
-            show={modalShow}
-            onHide={() => setModalShow(false)}
-            dialogClassName="modal-90w"
-          />
-        </div>
       </BoardSection>
     </BoardContainer>
   );
@@ -153,20 +151,29 @@ const Board = styled.div`
   }
 `;
 
+const BoardBox = styled.div`
+  ${props => props.theme.variables.flex}
+  margin-top: 10px;
+`;
+
+const DelBtn = styled.button`
+  padding: 7px 15px;
+  border-style: none;
+  background-color: ${props => props.theme.style.black};
+  color: #fff;
+  border-radius: 3px;
+
+  &:hover {
+    background-color: ${props => props.theme.style.hoverGrey};
+    color: black;
+  }
+`;
+
 const BoardSection = styled.div`
-  position: relative;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   padding-bottom: 20px;
-  border-bottom: 1px solid black;
-
-  .modalBtn {
-    position: absolute;
-    top: -40px;
-    right: 0px;
-    width: 100px;
-  }
 
   .board {
     width: 236px;
@@ -186,7 +193,13 @@ const BoardContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-top: 30px;
+
+  .modalBtn {
+    padding: 20px 0 20px 0;
+    top: -40px;
+    right: 0px;
+    width: 100px;
+  }
 `;
 
 export default Boards;

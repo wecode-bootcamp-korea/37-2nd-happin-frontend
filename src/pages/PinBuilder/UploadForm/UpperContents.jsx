@@ -44,7 +44,7 @@ const UpperContents = ({ boards, setSubmitPin, setImageSrc }) => {
             );
           })}
         </select>
-        <button>저장</button>
+        <button>생성</button>
       </SelectBox>
     </UpperContent>
   );

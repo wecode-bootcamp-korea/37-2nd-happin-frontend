@@ -69,7 +69,7 @@ const PinBuilder = () => {
     });
 
     if (response.status === 201) {
-      alert("저장성공!");
+      alert("핀을 성공적으로 만들었습니다!");
       navigate("/main");
     } else {
       alert("컨텐츠를 모두 채워주쇼");
