@@ -2,24 +2,19 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
 import { API, accessToken } from "../../config";
-//import { BOARD_LIST } from "./boardData"; //mock data용
 
 const PinList = ({ photo, boardName }) => {
-  //console.log("boardName", boardName);
   const [select, setSelect] = useState("");
-  // console.log(select);
   const [isStore, setIsStore] = useState(false);
   const { pinId, pinImage, title, username, profileImage } = photo;
 
   const handleSelect = e => {
     setSelect(e.target.value);
-    console.log(e.target.value);
   };
 
   const handleStoreButton = () => {
     setIsStore(!isStore);
   };
-  //console.log(isStore);
 
   const storePins = e => {
     const pinNumber = e.target.id;
@@ -43,7 +38,6 @@ const PinList = ({ photo, boardName }) => {
           alert("보드에 저장되었습니다.");
         }
       });
-    console.log(select);
   };
 
   const deletePins = e => {
@@ -69,7 +63,6 @@ const PinList = ({ photo, boardName }) => {
           alert("보드에서 삭제되었습니다.");
         }
       });
-    //console.log("삭제");
   };
 
   return (
@@ -105,32 +98,6 @@ const PinList = ({ photo, boardName }) => {
           </UserInfo>
         </Link>
       </PinText>
-      {/* mockdata용 */}
-      {/* <PinTop>
-        <PinImg src={photo.urls.small} alt={photo.id} />
-        <PinInfo>
-          <SelectBox onChange={handleSelect} value={select}>
-            {BOARD_LIST.map(list => (
-              <SelectOption key={list.id} value={list.name}>
-                {list.name}
-              </SelectOption>
-            ))}
-          </SelectBox>
-          <DownloadButton onClick={storePins}>저장</DownloadButton>
-        </PinInfo>
-      </PinTop>
-      <PinText>
-        <Link to={`/pin/${pinId}`}>
-          <PinTitle>
-            어쩌구 저쩌구어쩌구 저쩌구어쩌구 저쩌구어쩌구 저쩌구어쩌구
-            저쩌구어쩌구 저쩌구어쩌구 저쩌구어쩌구 저쩌구
-          </PinTitle>
-          <UserInfo>
-            <UserProfile src="https://youth1.com/sites/all/themes/youth1_2016/images/avatar-default.jpg" />
-            <UserId>안수진</UserId>
-          </UserInfo>
-        </Link>
-      </PinText> */}
     </PinItem>
   );
 };
@@ -234,7 +201,6 @@ const DownloadButton = styled.button`
   width: 80px;
   height: 40px;
   color: #fff;
-  // background-color: ${({ theme }) => theme.style.pinterRed};
   background-color: ${props => (props.active ? "#222222" : "#E60024")};
   line-height: 35px;
   text-align: center;

@@ -1,6 +1,4 @@
 const BASE_URL = "http://10.58.52.214:8000";
-// export const accessToken =
-//   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzksImlhdCI6MTY2NTY1ODQzMn0.Ds-16kR22fSYEPbyFg6PZqhCiyqEuhkmdedGP1MWfhQ";
 export const accessToken = localStorage.getItem("token");
 
 export const API = {
@@ -15,5 +13,3 @@ export const API = {
   MAKED_PIN: `${BASE_URL}/pin`,
   GET_PIN: `${BASE_URL}/profile/created`,
 };
-
-//export const GET_DETAIL_API = `${BASE_URL}/`;

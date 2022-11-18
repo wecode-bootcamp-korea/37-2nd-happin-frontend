@@ -39,12 +39,6 @@ const Detail = () => {
     navigate(`/main/?pinId=${params}`);
   };
 
-  // useEffect(() => {
-  //   fetch("data/detail.json")
-  //     .then(res => res.json())
-  //     .then(data => setPinData(data));
-  // }, []);
-
   return (
     <DetailWrapper>
       <BackToPage onClick={goBack} />

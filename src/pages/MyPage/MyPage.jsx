@@ -6,13 +6,11 @@ import BoardDetail from "./components/BoardDetail";
 import styled from "styled-components";
 import { Link, useParams } from "react-router-dom";
 import { API, accessToken } from "../../config";
-//http://10.58.52.214:8000/profile/_created
 
 const MyPage = () => {
   const { id } = useParams();
   const [selectTab, setSelectTab] = useState("저장됨");
   const [data, setData] = useState([]);
-  // /data/mypage.json
   useEffect(() => {
     fetch(`${API.MYPAGE}`, {
       headers: { authorization: accessToken },

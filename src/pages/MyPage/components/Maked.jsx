@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
+import Masonry from "react-responsive-masonry";
 import { API, accessToken } from "../../../config";
 
 const Maked = () => {
@@ -17,14 +17,10 @@ const Maked = () => {
 
     postRemove()
       .then(res => {
-        //eslint-disable-next-line
-        alert("삭제됐수");
+        alert("삭제됐습니다");
         window.location.replace("/my-page/maked");
       })
-      .catch(res =>
-        //eslint-disable-next-line
-        console.log("hi")
-      );
+      .catch(res => alert("오류가 발생했습니다."));
   };
 
   useEffect(() => {

@@ -20,8 +20,7 @@ const PinBuilder = () => {
   const [interests, setInterests] = useState([]);
   const [boards, setBoards] = useState([]);
   const navigate = useNavigate();
-  // const token = localStorage.getItem('token'); http://10.58.52.214:8000/pin ///data/pinBuilder.json
-  console.log(submitPin);
+
   useEffect(() => {
     async function fetchData() {
       const response = await fetch(`${API.MAKED_PIN}`, {
@@ -42,7 +41,6 @@ const PinBuilder = () => {
         boardId: data.boards[0].boardId,
       });
     });
-    //eslint-disable-next-line
   }, []);
 
   const handleSubmit = async e => {
@@ -54,10 +52,6 @@ const PinBuilder = () => {
     formData.append("pinImage", submitPin.uploadingImg);
     formData.append("boardId", submitPin.boardId);
     formData.append("interests", selectInt);
-
-    for (let pair of formData.entries()) {
-      console.log(pair[0] + ", " + pair[1]);
-    }
 
     let response = await fetch(`${API.MAKED_PIN}`, {
       method: "POST",
@@ -85,7 +79,6 @@ const PinBuilder = () => {
             submitPin={submitPin}
             setImageSrc={setImageSrc}
             boards={boards}
-            // setBoard={setBoard}
           />
           <LowerContents
             submitPin={submitPin}

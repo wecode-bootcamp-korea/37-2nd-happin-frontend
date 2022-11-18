@@ -6,8 +6,6 @@ import { API, accessToken } from "../../../config";
 
 const BoardDetail = () => {
   const [pins, setPins] = useState([]);
-  // const id = 2; // 얘 mypage에서 props로 넘겨 받기.
-  //`http://10.58.52.214:8000/board/${id}`
   const { id } = useParams();
   useEffect(() => {
     const getData = async () => {

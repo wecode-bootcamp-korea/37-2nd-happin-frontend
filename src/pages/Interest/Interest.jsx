@@ -16,7 +16,6 @@ const IntereststModal = () => {
     let response = await axios({
       method: "GET",
       url: `${API.GET_INTEREST}`,
-      // url: "data/interest.json",
     });
     if (response.status === 200) {
       setInterests(response.data);

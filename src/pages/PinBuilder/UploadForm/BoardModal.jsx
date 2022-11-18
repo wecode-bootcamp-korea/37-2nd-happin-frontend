@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const BoardModal = ({ modalBoard, setSubmitPin, submitPin, handleModal }) => {
   const [board, setBoard] = useState(["board1", "board2"]);
-  //보드 데이터 받으면 setBoard
+
   const selectBoard = e => {
     console.log(e.target.innerHTML);
     setSubmitPin({ ...submitPin, board: e.target.innerHTML });

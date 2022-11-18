@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
@@ -62,20 +62,8 @@ function BoardCreateModal(props) {
 
 const Boards = ({ data }) => {
   const [modalShow, setModalShow] = React.useState(false);
-  // const [boards, setBoards] = useState([...data]);
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const response = await fetch("http://10.58.52.214:8000/boards", {
-  //       headers: { authorization: token },
-  //     });
-
-  //     return response.json();
-  //   };
-  //   // fetchData().then(res => console.log(res.boards));
-  // }, []);
 
   const deleteBoard = async e => {
-    console.log(e.target.name);
     const response = await fetch(`${API.BOARD}/${e.target.name}`, {
       method: "DELETE",
       headers: { authorization: accessToken },

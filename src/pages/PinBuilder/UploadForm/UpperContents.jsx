@@ -2,19 +2,6 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 
 const UpperContents = ({ boards, setSubmitPin, setImageSrc }) => {
-  // useEffect(() => {
-  //   const getData = async () => {
-  //     const response = await fetch("", {
-  //       headers: {
-  //         userId: 2,
-  //       },
-  //     });
-  //     return response;
-  //   };
-  //   //eslint-disable-next-line
-  //   getData().then(res => console.log(res));
-  // });
-
   const handleSelect = e => {
     setSubmitPin(prev => ({ ...prev, boardId: e.target.value }));
   };

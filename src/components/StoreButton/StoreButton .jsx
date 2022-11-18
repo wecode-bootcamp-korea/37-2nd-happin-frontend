@@ -2,13 +2,6 @@ import React from "react";
 import styled from "styled-components";
 
 const StoreButton = () => {
-  // const [isOpenModal, setIsOpenModal] = useState(false);
-
-  // const handleModal = () => {
-  //   console.log("hihihi");
-  //   setIsOpenModal(prev => !prev);
-  // };
-
   return <Button>저장</Button>;
 };
 

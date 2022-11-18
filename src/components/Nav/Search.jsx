@@ -4,7 +4,6 @@ import styled from "styled-components";
 
 const Search = () => {
   const [searchValue, setSearchValue] = useState("");
-  // console.log("검색어:", search);
   const navigate = useNavigate();
 
   const handleSearchValue = e => {
