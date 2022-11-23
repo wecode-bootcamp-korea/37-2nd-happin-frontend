@@ -17,6 +17,7 @@ const PinList = ({ photo, boardName }) => {
   };
 
   const storePins = e => {
+    // 선택한 보드에 저장하는 함수
     const pinNumber = e.target.id;
     fetch(`${API.POST_DETAIL}/${pinNumber}`, {
       method: "POST",
@@ -41,6 +42,7 @@ const PinList = ({ photo, boardName }) => {
   };
 
   const deletePins = e => {
+    // 보드 저장을 취소하는 함수
     const pinNumber = e.target.id;
     fetch(`${API.POST_DETAIL}/${pinNumber}`, {
       method: "DLELTE",

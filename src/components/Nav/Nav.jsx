@@ -5,7 +5,6 @@ import styled from "styled-components";
 import { API, accessToken } from "../../config";
 
 const Nav = () => {
-  const TOKEN = localStorage.getItem("token");
   const [userInfo, setUserInfo] = useState([]);
   const navigate = useNavigate();
   const goToMain = () => {
@@ -23,18 +22,22 @@ const Nav = () => {
   };
 
   useEffect(() => {
-    TOKEN &&
-      fetch(`${API.MAIN}`, {
-        headers: {
-          "Content-Type": "application/json;charset=utf-8",
-          Authorization: TOKEN,
-        },
-      })
+    accessToken &&
+      fetch(
+        `${API.MAIN}`,
+        //"http://localhost:4000/users", mockupData
+        {
+          headers: {
+            "Content-Type": "application/json;charset=utf-8",
+            Authorization: accessToken,
+          },
+        }
+      )
         .then(res => res.json())
         .then(data => {
           setUserInfo(data.users);
         });
-  }, [TOKEN]);
+  }, []);
 
   if (
     window.location.pathname === "/" &&

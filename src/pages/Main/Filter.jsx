@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { FILTER_LIST } from "./filterData.js";
 
-const Filter = ({ handleChange, isToggle }) => {
+const Filter = ({ handleQueryString, isToggle }) => {
   return (
     <FilterArea active={isToggle}>
       <FilterWrap>
@@ -15,7 +15,7 @@ const Filter = ({ handleChange, isToggle }) => {
                   <StyledInput
                     id={query}
                     name={category}
-                    onClick={() => handleChange(category, query)}
+                    onClick={() => handleQueryString(category, query)}
                   />
                   <StyledLabel htmlFor={query}>{text}</StyledLabel>
                 </CheckBoxList>

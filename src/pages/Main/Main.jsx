@@ -6,13 +6,14 @@ import Filter from "./Filter";
 import styled from "styled-components";
 import LoadingImage from "../../assets/images/loading.gif";
 import { API, accessToken } from "../../config";
+
 const Main = () => {
-  const [pins, setPins] = useState([]);
-  const [page, setPage] = useState(0);
-  const [boardName, setBoardName] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isToggle, setIsToggle] = useState(true);
-  const [searchParams, setSearchParams] = useSearchParams({});
+  const [pins, setPins] = useState([]); // pin 정보
+  const [page, setPage] = useState(0); // page count
+  const [boardName, setBoardName] = useState([]); // board 정보
+  const [isLoading, setIsLoading] = useState(false); // 무한 스크롤
+  const [isToggle, setIsToggle] = useState(true); // 필터 토글
+  const [searchParams, setSearchParams] = useSearchParams({}); // 쿼리스트링
 
   const params = new URLSearchParams(searchParams);
   const location = useLocation();
@@ -20,7 +21,18 @@ const Main = () => {
   const pageEnd = useRef();
   const query = location.search.slice(1);
 
-  const handleChange = (name, value) => {
+  const loadMore = () => {
+    // page 증가 함수
+    setPage(prev => prev + 1);
+  };
+
+  const showFilter = () => {
+    // 필터 토글 함수
+    setIsToggle(!isToggle);
+  };
+
+  const handleQueryString = (name, value) => {
+    //url에 팔터 쿼리스트링으로 올리는 함수
     const values = params.getAll(name);
 
     if (values.includes(value)) {
@@ -32,6 +44,7 @@ const Main = () => {
   };
 
   const removeValue = (values, key, removeValue) => {
+    //url에 팔터 쿼리스트링 삭제하는 함수
     params.delete(key);
     values.forEach(value => {
       if (value !== removeValue) {
@@ -40,15 +53,8 @@ const Main = () => {
     });
   };
 
-  const showFilter = () => {
-    setIsToggle(!isToggle);
-  };
-
   useEffect(() => {
-    setSearchParams("");
-  }, []);
-
-  useEffect(() => {
+    // 각각의 핀에 해당하는 보드 정보 가져옴
     fetch(`${API.MAIN}`, {
       headers: {
         "Content-Type": "application/json;charset=utf-8",
@@ -57,9 +63,10 @@ const Main = () => {
     })
       .then(res => res.json())
       .then(data => setBoardName(data.boards));
-  }, [searchParams]);
+  }, []);
 
   useEffect(() => {
+    // 쿼리스트링으로 올라간 필터에 맞는 핀들 보여줌
     fetch(`${API.MAIN}?${query}&offset=${page}&limit=20`, {
       headers: {
         "Content-Type": "application/json;charset=utf-8",
@@ -72,7 +79,23 @@ const Main = () => {
       });
   }, [query]);
 
+  useEffect(() => {
+    // 무한 스크롤 구현, 정해진 타켓에 도달하면 page가 증가하면서 핀들을 불러옴
+    if (isLoading) {
+      const observer = new IntersectionObserver(
+        entries => {
+          if (entries[0].isIntersecting) {
+            loadMore();
+          }
+        },
+        { threshold: 1 }
+      );
+      observer.observe(pageEnd.current);
+    }
+  }, [isLoading]);
+
   const fetchPins = async page => {
+    // 처음 메인 진입시 핀 정보 GET
     const res = await fetch(`${API.MAIN}?offset=${page}&limit=20`, {
       headers: {
         "Content-Type": "application/json;charset=utf-8",
@@ -89,33 +112,21 @@ const Main = () => {
   };
 
   useEffect(() => {
+    // GET
     fetchPins(page);
   }, [page]);
 
   useEffect(() => {
-    if (isLoading) {
-      const observer = new IntersectionObserver(
-        entries => {
-          if (entries[0].isIntersecting) {
-            loadMore();
-          }
-        },
-        { threshold: 1 }
-      );
-      observer.observe(pageEnd.current);
-    }
-  }, [isLoading]);
-
-  const loadMore = () => {
-    setPage(prev => prev + 1);
-  };
+    // 새로고침 시 쿼리스트링 초기화
+    setSearchParams("");
+  }, []);
 
   return (
     <MainLayout>
       <Toggle active={isToggle} onClick={showFilter}>
         {isToggle ? "접기" : "펴기"}
       </Toggle>
-      <Filter isToggle={isToggle} handleChange={handleChange} />
+      <Filter isToggle={isToggle} handleQueryString={handleQueryString} />
       <PinWrap active={isToggle}>
         <Masonry columnsCount={4} gutter="20px">
           {pins &&
