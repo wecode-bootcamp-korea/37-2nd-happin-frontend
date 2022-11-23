@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
 import { API, accessToken } from "../../config";
+import { BOARD_LIST } from "./boardData"; //mock data용
 
 const PinList = ({ photo, boardName }) => {
   const [select, setSelect] = useState("");
@@ -69,7 +70,7 @@ const PinList = ({ photo, boardName }) => {
 
   return (
     <PinItem>
-      <PinTop>
+      {/* <PinTop>
         <PinImg src={pinImage} alt={pinId} />
         <PinInfo>
           <DownloadButton
@@ -97,6 +98,31 @@ const PinList = ({ photo, boardName }) => {
           <UserInfo key={pinId}>
             <UserProfile src={profileImage} />
             <UserId>{username}</UserId>
+          </UserInfo>
+        </Link>
+      </PinText> */}
+      {/* mockdata용 */}
+      <PinTop>
+        <PinImg src={photo.urls.small} alt={photo.id} />
+        <PinInfo>
+          <SelectBox onChange={handleSelect} value={select}>
+            {BOARD_LIST.map(list => (
+              <SelectOption key={list.id} value={list.name}>
+                {list.name}
+              </SelectOption>
+            ))}
+          </SelectBox>
+          <DownloadButton onClick={storePins}>저장</DownloadButton>
+        </PinInfo>
+      </PinTop>
+      <PinText>
+        <Link to={`/pin/${pinId}`}>
+          <PinTitle>
+            They must often change who would be constant in happiness or wisdom.
+          </PinTitle>
+          <UserInfo>
+            <UserProfile src="https://youth1.com/sites/all/themes/youth1_2016/images/avatar-default.jpg" />
+            <UserId>이진수</UserId>
           </UserInfo>
         </Link>
       </PinText>

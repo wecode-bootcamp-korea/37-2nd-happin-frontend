@@ -96,18 +96,20 @@ const Main = () => {
 
   const fetchPins = async page => {
     // 처음 메인 진입시 핀 정보 GET
-    const res = await fetch(`${API.MAIN}?offset=${page}&limit=20`, {
-      headers: {
-        "Content-Type": "application/json;charset=utf-8",
-        Authorization: accessToken,
-      },
-    });
+    const res = await fetch(
+      //`${API.MAIN}?offset=${page}&limit=20`,
+      `https://api.unsplash.com/photos/?client_id=${UNSPLASH_API_KEY}&page=${page}&per_page=10`, //mockupData
+      {
+        headers: {
+          "Content-Type": "application/json;charset=utf-8",
+          Authorization: accessToken,
+        },
+      }
+    );
     if (res.status === 200) {
       const data = await res.json();
-      setPins(prev => [...prev, ...data.pins]);
+      setPins(prev => [...prev, ...data]); //API ...data.pins
       setIsLoading(true);
-    } else {
-      navigate(`/interest`);
     }
   };
 
@@ -176,3 +178,5 @@ const Loading = styled.div`
   background-size: 100px;
   margin: 20px 0;
 `;
+
+const UNSPLASH_API_KEY = "X-X14z7mHkX89GXieytSzVqqbqtkhF9V-Q0tGKDo75I";

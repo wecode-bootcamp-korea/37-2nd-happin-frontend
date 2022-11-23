@@ -22,21 +22,20 @@ const Nav = () => {
   };
 
   useEffect(() => {
-    accessToken &&
-      fetch(
-        `${API.MAIN}`,
-        //"http://localhost:4000/users", mockupData
-        {
-          headers: {
-            "Content-Type": "application/json;charset=utf-8",
-            Authorization: accessToken,
-          },
-        }
-      )
-        .then(res => res.json())
-        .then(data => {
-          setUserInfo(data.users);
-        });
+    fetch(
+      //`${API.MAIN}`,
+      "http://localhost:4000/users",
+      {
+        headers: {
+          "Content-Type": "application/json;charset=utf-8",
+          //Authorization: accessToken,
+        },
+      }
+    )
+      .then(res => res.json())
+      .then(data => {
+        setUserInfo(data);
+      });
   }, []);
 
   if (
